@@ -322,7 +322,7 @@ namespace ActionTimeline.Helpers
             float castTime = 0;
 
             // handle sprint and auto attack icons
-            int iconId = actionId == 3 ? 104 : (actionId == 1 ? 101 : action.Icon);
+            int iconId = actionId == 3 ? 104 : (actionId is 7 or 8 ? 101 : action.Icon);
 
             // handle weird cases
             uint id = actionId;
