@@ -31,21 +31,21 @@ namespace ActionTimeline.Windows
             ImGui.PushItemWidth(80 * _scale);
 
             // general
-            if (ImGui.BeginTabItem("General##Rotation_General"))
+            if (ImGui.BeginTabItem("通用##Rotation_General"))
             {
                 DrawGeneralTab();
                 ImGui.EndTabItem();
             }
 
             // icons
-            if (ImGui.BeginTabItem("Icons##Rotation_Icons"))
+            if (ImGui.BeginTabItem("图标##Rotation_Icons"))
             {
                 DrawIconsTab();
                 ImGui.EndTabItem();
             }
 
             // separator
-            if (ImGui.BeginTabItem("Separator##Rotation_Separator"))
+            if (ImGui.BeginTabItem("分割线##Rotation_Separator"))
             {
                 DrawSeparatorTab();
                 ImGui.EndTabItem();
@@ -56,45 +56,45 @@ namespace ActionTimeline.Windows
 
         public void DrawGeneralTab()
         {
-            ImGui.Checkbox("Enabled", ref Settings.ShowRotation);
+            ImGui.Checkbox("启用", ref Settings.ShowRotation);
 
             if (!Settings.ShowRotation) { return; }
 
-            ImGui.DragInt("GCD Spacing", ref Settings.RotationGCDSpacing);
-            ImGui.DragInt("Off-GCD Spacing", ref Settings.RotationOffGCDSpacing);
+            ImGui.DragInt("GCD前间隔距离", ref Settings.RotationGCDSpacing);
+            ImGui.DragInt("能力技前间隔距离", ref Settings.RotationOffGCDSpacing);
 
             ImGui.NewLine();
-            ImGui.Checkbox("Locked", ref Settings.RotationLocked);
-            ImGui.ColorEdit4("Locked Color", ref Settings.RotationLockedBackgroundColor, ImGuiColorEditFlags.NoInputs);
-            ImGui.ColorEdit4("Unlocked Color", ref Settings.RotationUnlockedBackgroundColor, ImGuiColorEditFlags.NoInputs);
+            ImGui.Checkbox("锁定窗口", ref Settings.RotationLocked);
+            ImGui.ColorEdit4("锁定时的背景颜色", ref Settings.RotationLockedBackgroundColor, ImGuiColorEditFlags.NoInputs);
+            ImGui.ColorEdit4("解锁时的背景颜色", ref Settings.RotationUnlockedBackgroundColor, ImGuiColorEditFlags.NoInputs);
 
             ImGui.NewLine();
-            ImGui.DragInt("Out of Combat Clear Time (seconds)", ref Settings.OutOfCombatClearTime, 0.1f, 1, 30);
-            DrawHelper.SetTooltip("The rotation will be cleared after being out of combat for this many seconds.");
+            ImGui.DragInt("战斗结束清除记录时长 (秒)", ref Settings.OutOfCombatClearTime, 0.1f, 1, 30);
+            DrawHelper.SetTooltip("战斗结束后多少时间后会将技能队列的技能记录清除。");
 
-            ImGui.Checkbox("Show Only In Duty", ref Settings.ShowRotationOnlyInDuty);
-            ImGui.Checkbox("Show Only In Combat", ref Settings.ShowRotationOnlyInCombat);
+            ImGui.Checkbox("仅在任务中显示", ref Settings.ShowRotationOnlyInDuty);
+            ImGui.Checkbox("仅在战斗中显示", ref Settings.ShowRotationOnlyInCombat);
         }
 
         public void DrawIconsTab()
         {
-            ImGui.DragInt("Icon Size", ref Settings.RotationIconSize);
+            ImGui.DragInt("GCD图标大小", ref Settings.RotationIconSize);
 
             ImGui.NewLine();
-            ImGui.DragInt("Off GCD Icon Size", ref Settings.RotationOffGCDIconSize);
-            ImGui.DragInt("Iff GCD Vertical Offset", ref Settings.RotationOffGCDOffset);
+            ImGui.DragInt("能力技图标大小", ref Settings.RotationOffGCDIconSize);
+            ImGui.DragInt("能力技图标竖直方向偏移", ref Settings.RotationOffGCDOffset);
         }
 
         public void DrawSeparatorTab()
         {
-            ImGui.Checkbox("Enabled", ref Settings.RotationSeparatorEnabled);
-            DrawHelper.SetTooltip("Draws a separator between 2 abilities if enough time has passed in between.");
+            ImGui.Checkbox("启用", ref Settings.RotationSeparatorEnabled);
+            DrawHelper.SetTooltip("如果两个技能之间的释放时间足够长，那么绘制分割线");
 
             if (!Settings.RotationSeparatorEnabled) { return; }
 
-            ImGui.DragInt("Time (seconds)", ref Settings.RotationSeparatorTime, 0.5f, 5, 60);
-            ImGui.DragInt("Width", ref Settings.RotationSeparatorWidth, 0.5f, 1, 10);
-            ImGui.ColorEdit4("Color", ref Settings.RotationSeparatorColor, ImGuiColorEditFlags.NoInputs);
+            ImGui.DragInt("技能时间间隔 (秒)", ref Settings.RotationSeparatorTime, 0.5f, 5, 60);
+            ImGui.DragInt("分割线的宽度", ref Settings.RotationSeparatorWidth, 0.5f, 1, 10);
+            ImGui.ColorEdit4("分割线的颜色", ref Settings.RotationSeparatorColor, ImGuiColorEditFlags.NoInputs);
         }
     }
 }
