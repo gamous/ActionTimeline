@@ -70,7 +70,7 @@ namespace ActionTimeline.Windows
 
             ImGui.NewLine();
             ImGui.DragInt("战斗结束清除记录时长 (秒)", ref Settings.OutOfCombatClearTime, 0.1f, 1, 30);
-            DrawHelper.SetTooltip("战斗结束后多少时间后会将技能队列的技能记录清除。");
+            DrawHelper.SetTooltip("战斗结束后多少时间后会清除技能队列的技能记录。");
 
             ImGui.Checkbox("仅在任务中显示", ref Settings.ShowRotationOnlyInDuty);
             ImGui.Checkbox("仅在战斗中显示", ref Settings.ShowRotationOnlyInCombat);

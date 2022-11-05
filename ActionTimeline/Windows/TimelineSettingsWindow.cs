@@ -75,7 +75,7 @@ namespace ActionTimeline.Windows
             if (!Settings.ShowTimeline) { return; }
 
             ImGui.DragInt("总时间 (秒)", ref Settings.TimelineTime, 0.1f, 1, 30);
-            DrawHelper.SetTooltip("这就是技能时间轴展示的时间总长度。");
+            DrawHelper.SetTooltip("技能时间轴展示的时间总长度。");
 
             ImGui.NewLine();
             ImGui.Checkbox("锁定窗口", ref Settings.TimelineLocked);
@@ -84,7 +84,7 @@ namespace ActionTimeline.Windows
 
             ImGui.NewLine();
             ImGui.DragInt("战斗结束清除记录时长 (秒)", ref Settings.OutOfCombatClearTime, 0.1f, 1, 30);
-            DrawHelper.SetTooltip("在战斗结束后多少时间后会将技能时间轴上的技能记录清除。");
+            DrawHelper.SetTooltip("在战斗结束后多少时间后会清除技能时间轴上的技能记录。(译者按：建议两倍于总时间)");
 
             ImGui.Checkbox("仅在任务中显示", ref Settings.ShowTimelineOnlyInDuty);
             ImGui.Checkbox("仅在战斗中显示", ref Settings.ShowTimelineOnlyInCombat);
