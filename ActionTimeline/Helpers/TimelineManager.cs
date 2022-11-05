@@ -389,7 +389,7 @@ namespace ActionTimeline.Helpers
             _onActionUsedHook?.Original(sourceId, sourceCharacter, pos, effectHeader, effectArray, effectTrail);
 
             PlayerCharacter? player = Plugin.ClientState.LocalPlayer;
-            if (player == null || sourceId != player.ObjectId) { return; }
+            if (player == null || sourceId != player.ObjectId || Marshal.ReadByte(effectHeader, 31) != 1) { return; }
 
             int actionId = Marshal.ReadInt32(effectHeader, 0x8);
             TimelineItemType? type = TypeForActionID((uint)actionId);
@@ -418,6 +418,10 @@ namespace ActionTimeline.Helpers
             if (player == null || sourceId != player.ObjectId) { return; }
 
             short actionId = Marshal.ReadInt16(ptr);
+
+            //Return if casting for a ride.
+            if(actionId == 4) { return; }
+
             AddItem((uint)actionId, TimelineItemType.CastStart);
         }
     }
