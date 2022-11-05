@@ -85,7 +85,7 @@ namespace ActionTimeline
                 "/actiontimeline",
                 new CommandInfo(PluginCommand)
                 {
-                    HelpMessage = "Opens the ActionTimeline configuration window.",
+                    HelpMessage = "打开ActionTimeline的配置窗口。",
 
                     ShowInHelp = true
                 }
@@ -95,7 +95,7 @@ namespace ActionTimeline
                 "/att",
                 new CommandInfo(PluginCommand)
                 {
-                    HelpMessage = "Opens the ActionTimeline Timeline Settings window.",
+                    HelpMessage = "打开技能时间轴的配置窗口。",
 
                     ShowInHelp = true
                 }
@@ -105,7 +105,7 @@ namespace ActionTimeline
                 "/atr",
                 new CommandInfo(PluginCommand)
                 {
-                    HelpMessage = "Opens the ActionTimeline Rotation Settings window.",
+                    HelpMessage = "打开技能队列的配置窗口。",
 
                     ShowInHelp = true
                 }
@@ -143,8 +143,8 @@ namespace ActionTimeline
         private void CreateWindows()
         {
             _settingsWindow = new SettingsWindow("ActionTimeline v"+ Version);
-            _timelineSettingsWindow = new TimelineSettingsWindow("Timeline Settings");
-            _rotationSettingsWindow = new RotationSettingsWindow("Rotation Settings");
+            _timelineSettingsWindow = new TimelineSettingsWindow("技能时间轴设置");
+            _rotationSettingsWindow = new RotationSettingsWindow("技能队列设置");
             _timelineWindow = new TimelineWindow("Timeline");
             _rotationWindow = new RotationWindow("Rotation");
 

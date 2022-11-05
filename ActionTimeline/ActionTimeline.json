@@ -1,9 +1,10 @@
 ﻿{
   "Name": "ActionTimeline",
-  "Author": "Tischel",
-  "Punchline": "Show your actions in real-time.",
-  "Description": "Configurable timeline display of all the actions you use.",
-  "RepoUrl": "https://github.com/Tischel/ActionTimeline",
+  "Author": "Tischel, 秋水(翻译)",
+  "Punchline": "实时显示您释放的技能。",
+  "Description": "以技能时间线或者技能队列的方式显示您使用的所有技能。",
+  "RepoUrl": "https://github.com/gamous/ActionTimeline",
+  "IconUrl": "https://raw.githubusercontent.com/gamous/ActionTimeline/master/ActionTimeline/Media/icon.png",
   "Tags": [ "UI" ],
   "Changelog": "0.2.0.0\n- Fixed windows not being click-through when locked.\n- Fixed Monk's Anatman showing as an oGCD and not triggering the GCD in the timeline.\n- Fixed Ninja's Mudras and Ninjutsus showing as an oGCD and not triggering the GCD in the timeline."
 }

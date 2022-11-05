@@ -23,12 +23,12 @@ namespace ActionTimeline.Windows
 
         public override void Draw()
         {
-            if (ImGui.Button("Configure Timeline Window"))
+            if (ImGui.Button("配置技能时间轴窗口"))
             {
                 Plugin.ShowTimelineSettingsWindow();
             }
 
-            if (ImGui.Button("Configure Rotation Window"))
+            if (ImGui.Button("配置技能队列窗口"))
             {
                 Plugin.ShowRotationSettingsWindow();
             }

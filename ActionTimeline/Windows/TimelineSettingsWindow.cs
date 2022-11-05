@@ -31,35 +31,35 @@ namespace ActionTimeline.Windows
             ImGui.PushItemWidth(80 * _scale);
 
             // general
-            if (ImGui.BeginTabItem("General##Timeline_General"))
+            if (ImGui.BeginTabItem("通用##Timeline_General"))
             {
                 DrawGeneralTab();
                 ImGui.EndTabItem();
             }
 
             // icons
-            if (ImGui.BeginTabItem("Icons##Timeline_Icons"))
+            if (ImGui.BeginTabItem("图标##Timeline_Icons"))
             {
                 DrawIconsTab();
                 ImGui.EndTabItem();
             }
 
             // casts
-            if (ImGui.BeginTabItem("Casts##Timeline_Casts"))
+            if (ImGui.BeginTabItem("咏唱##Timeline_Casts"))
             {
                 DrawCastsTab();
                 ImGui.EndTabItem();
             }
 
             // grid
-            if (ImGui.BeginTabItem("Grid##Timeline_Grid"))
+            if (ImGui.BeginTabItem("条格##Timeline_Grid"))
             {
                 DrawGridTab();
                 ImGui.EndTabItem();
             }
 
             // gcd clipping
-            if (ImGui.BeginTabItem("GCD Clipping##Timeline_GCD"))
+            if (ImGui.BeginTabItem("GCD空转##Timeline_GCD"))
             {
                 DrawGCDClippingTab();
                 ImGui.EndTabItem();
@@ -70,98 +70,98 @@ namespace ActionTimeline.Windows
 
         public void DrawGeneralTab()
         {
-            ImGui.Checkbox("Enabled", ref Settings.ShowTimeline);
+            ImGui.Checkbox("启用", ref Settings.ShowTimeline);
 
             if (!Settings.ShowTimeline) { return; }
 
-            ImGui.DragInt("Time (seconds)", ref Settings.TimelineTime, 0.1f, 1, 30);
-            DrawHelper.SetTooltip("This is how far in the past the timeline will go.");
+            ImGui.DragInt("总时间 (秒)", ref Settings.TimelineTime, 0.1f, 1, 30);
+            DrawHelper.SetTooltip("技能时间轴展示的时间总长度。");
 
             ImGui.NewLine();
-            ImGui.Checkbox("Locked", ref Settings.TimelineLocked);
-            ImGui.ColorEdit4("Locked Color", ref Settings.TimelineLockedBackgroundColor, ImGuiColorEditFlags.NoInputs);
-            ImGui.ColorEdit4("Unlocked Color", ref Settings.TimelineUnlockedBackgroundColor, ImGuiColorEditFlags.NoInputs);
+            ImGui.Checkbox("锁定窗口", ref Settings.TimelineLocked);
+            ImGui.ColorEdit4("锁定时的背景颜色", ref Settings.TimelineLockedBackgroundColor, ImGuiColorEditFlags.NoInputs);
+            ImGui.ColorEdit4("解锁时的背景颜色", ref Settings.TimelineUnlockedBackgroundColor, ImGuiColorEditFlags.NoInputs);
 
             ImGui.NewLine();
-            ImGui.DragInt("Out of Combat Clear Time (seconds)", ref Settings.OutOfCombatClearTime, 0.1f, 1, 30);
-            DrawHelper.SetTooltip("The timeline will be cleared after being out of combat for this many seconds.");
+            ImGui.DragInt("战斗结束清除记录时长 (秒)", ref Settings.OutOfCombatClearTime, 0.1f, 1, 30);
+            DrawHelper.SetTooltip("在战斗结束后多少时间后会清除技能时间轴上的技能记录。(译者按：建议两倍于总时间)");
 
-            ImGui.Checkbox("Show Only In Duty", ref Settings.ShowTimelineOnlyInDuty);
-            ImGui.Checkbox("Show Only In Combat", ref Settings.ShowTimelineOnlyInCombat);
+            ImGui.Checkbox("仅在任务中显示", ref Settings.ShowTimelineOnlyInDuty);
+            ImGui.Checkbox("仅在战斗中显示", ref Settings.ShowTimelineOnlyInCombat);
          }
 
         public void DrawIconsTab()
         {
-            ImGui.DragInt("Icon Size", ref Settings.TimelineIconSize);
+            ImGui.DragInt("GCD图标大小", ref Settings.TimelineIconSize);
 
             ImGui.NewLine();
-            ImGui.DragInt("Off GCD Icon Size", ref Settings.TimelineOffGCDIconSize);
-            ImGui.DragInt("Iff GCD Vertical Offset", ref Settings.TimelineOffGCDOffset);
+            ImGui.DragInt("能力技图标大小", ref Settings.TimelineOffGCDIconSize);
+            ImGui.DragInt("能力技图标竖直方向偏移", ref Settings.TimelineOffGCDOffset);
 
             ImGui.NewLine();
-            ImGui.Checkbox("Show Auto Attacks", ref Settings.TimelineShowAutoAttacks);
-            ImGui.DragInt("Auto Attack Icon Size", ref Settings.TimelineAutoAttackSize);
-            ImGui.DragInt("Auto Attack Vertical Offset", ref Settings.TimelineAutoAttackOffset);
+            ImGui.Checkbox("显示自动攻击图标", ref Settings.TimelineShowAutoAttacks);
+            ImGui.DragInt("自动攻击图标大小", ref Settings.TimelineAutoAttackSize);
+            ImGui.DragInt("自动攻击图标竖直方向偏移", ref Settings.TimelineAutoAttackOffset);
         }
 
         public void DrawCastsTab()
         {
-            ImGui.ColorEdit4("Cast In Progress Color", ref Settings.CastInProgressColor, ImGuiColorEditFlags.NoInputs);
-            ImGui.ColorEdit4("Cast Finished Color", ref Settings.CastFinishedColor, ImGuiColorEditFlags.NoInputs);
-            ImGui.ColorEdit4("Cast Canceled Color", ref Settings.CastCanceledColor, ImGuiColorEditFlags.NoInputs);
+            ImGui.ColorEdit4("咏唱时的颜色", ref Settings.CastInProgressColor, ImGuiColorEditFlags.NoInputs);
+            ImGui.ColorEdit4("咏唱完成的颜色", ref Settings.CastFinishedColor, ImGuiColorEditFlags.NoInputs);
+            ImGui.ColorEdit4("咏唱取消的颜色", ref Settings.CastCanceledColor, ImGuiColorEditFlags.NoInputs);
         }
 
         public void DrawGridTab()
         {
-            ImGui.Checkbox("Enabled", ref Settings.ShowGrid);
+            ImGui.Checkbox("启用", ref Settings.ShowGrid);
 
             if (!Settings.ShowGrid) { return; }
 
-            ImGui.Checkbox("Show Center Line", ref Settings.ShowGridCenterLine);
-            ImGui.DragInt("Line Width", ref Settings.GridLineWidth, 0.5f, 1, 5);
-            ImGui.ColorEdit4("Line Color", ref Settings.GridLineColor, ImGuiColorEditFlags.NoInputs);
+            ImGui.DragInt("线的宽度", ref Settings.GridLineWidth, 0.5f, 1, 5);
+            ImGui.ColorEdit4("线的颜色", ref Settings.GridLineColor, ImGuiColorEditFlags.NoInputs);
 
-            ImGui.NewLine();
-            ImGui.Checkbox("Divide By Seconds", ref Settings.GridDivideBySeconds);
+            ImGui.Checkbox("显示中心线", ref Settings.ShowGridCenterLine);
+
+            ImGui.Checkbox("显示按秒分割线", ref Settings.GridDivideBySeconds);
 
             if (!Settings.GridDivideBySeconds) { return; }
 
-            ImGui.Checkbox("Show Text", ref Settings.GridShowSecondsText);
+            ImGui.Checkbox("显示秒文字", ref Settings.GridShowSecondsText);
 
             ImGui.NewLine();
-            ImGui.Checkbox("Sub-Divide By Seconds", ref Settings.GridSubdivideSeconds);
+            ImGui.Checkbox("显示按秒细分线", ref Settings.GridSubdivideSeconds);
 
             if (!Settings.GridSubdivideSeconds) { return; }
 
-            ImGui.DragInt("Sub-Division Count", ref Settings.GridSubdivisionCount, 0.5f, 2, 8);
-            ImGui.DragInt("Sub-Division Line Width", ref Settings.GridSubdivisionLineWidth, 0.5f, 1, 5);
-            ImGui.ColorEdit4("Sub-Division Line Color", ref Settings.GridSubdivisionLineColor, ImGuiColorEditFlags.NoInputs);
+            ImGui.DragInt("细分线间段数", ref Settings.GridSubdivisionCount, 0.5f, 2, 8);
+            ImGui.DragInt("细分线的宽度", ref Settings.GridSubdivisionLineWidth, 0.5f, 1, 5);
+            ImGui.ColorEdit4("细分线的颜色", ref Settings.GridSubdivisionLineColor, ImGuiColorEditFlags.NoInputs);
         }
 
         public void DrawGCDClippingTab()
         {
-            ImGui.Checkbox("Enabled", ref Settings.ShowGCDClipping);
+            ImGui.Checkbox("启用", ref Settings.ShowGCDClipping);
 
             if (!Settings.ShowGCDClipping) { return; }
 
             int clippingThreshold = (int)(Settings.GCDClippingThreshold * 1000f);
-            if (ImGui.DragInt("Threshold (ms)", ref clippingThreshold, 0.1f, 0, 1000))
+            if (ImGui.DragInt("GCD阈值 (毫秒)", ref clippingThreshold, 0.1f, 0, 1000))
             {
                 Settings.GCDClippingThreshold = (float)clippingThreshold / 1000f;
             }
-            DrawHelper.SetTooltip("This can be used filter out \"false positives\" due to latency or other factors. Any GCD clipping detected that is shorter than this value will be ignored.\nIt is strongly recommended that you test out different values and find out what works best for your setup.");
+            DrawHelper.SetTooltip("这可以用于过滤掉由于延迟或其他因素导致的“误报”。 检测到的任何比此值短的 GCD 空转都将被忽略。\n强烈建议您测试不同的值以找出最适合您的阈值。");
 
             int castClippingThresgold = (int)(Settings.GCDClippingCastsThreshold * 1000f);
-            if (ImGui.DragInt("Casts Threshold (ms)", ref castClippingThresgold, 0.1f, 0, 1000))
+            if (ImGui.DragInt("咏唱阈值 (毫秒)", ref castClippingThresgold, 0.1f, 0, 1000))
             {
                 Settings.GCDClippingCastsThreshold = (float)castClippingThresgold / 1000f;
             }
-            DrawHelper.SetTooltip("This can be used filter out \"false positives\" after a cast, specially for casts that are longer than the GCD. Any GCD clipping detected after a cast that is shorter than this value will be ignored.\nIt is strongly recommended that you test out different values and find out what works best for your setup.");
+            DrawHelper.SetTooltip("这可用于在咏唱后过滤掉“误报”，特别是对于长于 GCD 的咏唱。在咏唱后检测到的任何 GCD 空转都将被忽略。\\n强烈建议您测试不同的值以找出最适合您的阈值。(译者按：通常为GCD阈值的基础上加500毫秒)");
 
-            ImGui.DragInt("Max Time (seconds)", ref Settings.GCDClippingMaxTime, 0.1f, 3, 60);
-            DrawHelper.SetTooltip("Any GCD clip longer than this will be capped");
+            ImGui.DragInt("最大时间 (秒)", ref Settings.GCDClippingMaxTime, 0.1f, 3, 60);
+            DrawHelper.SetTooltip("任何超过最大时间的GCD空转都会被截停。");
 
-            ImGui.ColorEdit4("Color", ref Settings.GCDClippingColor, ImGuiColorEditFlags.NoInputs);
+            ImGui.ColorEdit4("GCD空转颜色", ref Settings.GCDClippingColor, ImGuiColorEditFlags.NoInputs);
         }
     }
 }

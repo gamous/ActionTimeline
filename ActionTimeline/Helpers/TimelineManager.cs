@@ -322,7 +322,7 @@ namespace ActionTimeline.Helpers
             float castTime = 0;
 
             // handle sprint and auto attack icons
-            int iconId = actionId == 3 ? 104 : (actionId == 1 ? 101 : action.Icon);
+            int iconId = actionId == 3 ? 104 : (actionId is 7 or 8 ? 101 : action.Icon);
 
             // handle weird cases
             uint id = actionId;
@@ -389,7 +389,7 @@ namespace ActionTimeline.Helpers
             _onActionUsedHook?.Original(sourceId, sourceCharacter, pos, effectHeader, effectArray, effectTrail);
 
             PlayerCharacter? player = Plugin.ClientState.LocalPlayer;
-            if (player == null || sourceId != player.ObjectId) { return; }
+            if (player == null || sourceId != player.ObjectId || Marshal.ReadByte(effectHeader, 31) != 1) { return; }
 
             int actionId = Marshal.ReadInt32(effectHeader, 0x8);
             TimelineItemType? type = TypeForActionID((uint)actionId);
@@ -418,6 +418,10 @@ namespace ActionTimeline.Helpers
             if (player == null || sourceId != player.ObjectId) { return; }
 
             short actionId = Marshal.ReadInt16(ptr);
+
+            //Return if casting for a ride.
+            if(actionId == 4) { return; }
+
             AddItem((uint)actionId, TimelineItemType.CastStart);
         }
     }
